@@ -45,6 +45,8 @@ sudo apt install -y jenkins
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
 # Show Jenkins initial admin password
 echo "Jenkins initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
