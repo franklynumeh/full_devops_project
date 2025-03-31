@@ -4,3 +4,8 @@ First provison jenkins server using terraform
     terraform fmt
     terraform plan
     terraform apply --auto-approve
+
+set up s3
+set up jenkins
+
+checkout codebase and, write docker file and pusj to ecr usiong jenkins
