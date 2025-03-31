@@ -38,9 +38,9 @@ pipeline {
                     sh '''
                         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 577638372446.dkr.ecr.us-east-2.amazonaws.com
 
-                        docker build -t node-app/server-repo:latest ./full_devops_project/cicd_DevOps_Project_NodeJS_server
-                        docker tag node-app/server-repo:latest 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest
-                        docker push 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest
+                        docker build -t node-app/server-repo:latest ./cicd_DevOps_Project_NodeJS_server
+                          docker tag node-app/server-repo:latest 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest
+                         docker push 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest
                     '''
                 }
             }
