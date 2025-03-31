@@ -50,23 +50,22 @@ pipeline {
 stage('Build and Push Docker Image') {
     steps {
         script {
-            sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 577638372446.dkr.ecr.us-east-2.amazonaws.com'
+            // Login to ECR
+            sh '''
+            aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 577638372446.dkr.ecr.us-east-2.amazonaws.com
+            '''
 
-            
-            // Build the image with the Jenkins build number tag
-            sh "docker build -t node-app/server-repo ."
-            
-            // Tag the image with the dynamic 'latest' tag (not overwriting 'latest')
-            sh "docker tag node-app/server-repo:latest 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest"
+            // Build the image (assumes Dockerfile is in the root)
+            sh 'docker build -t node-app/server-repo:latest .'
 
-            // Push both tags to ECR
-            sh "docker push 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest"
-          
+            // Tag the image for ECR
+            sh 'docker tag node-app/server-repo:latest 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest'
+
+            // Push to ECR
+            sh 'docker push 577638372446.dkr.ecr.us-east-2.amazonaws.com/node-app/server-repo:latest'
         }
     }
-    
 }
-
 // stage('Build and Push Docker Image') {
 //     steps {
 //         script {
