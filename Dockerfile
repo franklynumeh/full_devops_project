@@ -1,8 +1,8 @@
 FROM node:18-alpine
 WORKDIR /app
-COPY package*.json ./
+COPY cicd_DevOps_Project_NodeJS_server/package*.json ./
 RUN npm install
-COPY . .
+COPY cicd_DevOps_Project_NodeJS_server/ .
 EXPOSE 4000
 CMD ["npm", "start"]
 LABEL maintainer="chiemelaumeh1@gmail.com"
