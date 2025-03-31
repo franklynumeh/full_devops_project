@@ -1,9 +1,15 @@
 FROM node:18-alpine
 WORKDIR /app
-COPY cicd_DevOps_Project_NodeJS_server/package*.json ./
+
+# No more subfolder reference needed
+COPY package*.json ./
 RUN npm install
-COPY cicd_DevOps_Project_NodeJS_server/ .
+
+# Copy the rest of the app files
+COPY . .
+
 EXPOSE 4000
 CMD ["npm", "start"]
+
 LABEL maintainer="chiemelaumeh1@gmail.com"
 LABEL application="CICD server application"
